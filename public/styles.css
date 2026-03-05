@@ -1,4 +1,24 @@
 body {
     min-width: 100vw;
     min-height: 100vh;
+    margin: 0;
+    background-color: lightgray;
+    font-family: sans-serif;
+    
+}
+
+.header-container {
+    display: flex;
+    text-decoration: none;
+    justify-content:center;
+    align-items: center;
+    background-color: white;
+    min-height: 20%;
+    font-size: 32px;
+    padding: 24px;
+
+}
+a {
+    text-decoration: none;
+    color: black;
 }
