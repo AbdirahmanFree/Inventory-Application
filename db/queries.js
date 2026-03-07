@@ -5,9 +5,9 @@ async function listAllCars(){
     return rows
 }
 
-function insertCar(car) {
-    console.log(car)
-    
+async function insertCar(car) {
+    pool.query(`INSERT INTO car(make,model,year,kilometres,transmission,drivetrain,body,extcolor,intcolor,description,price)
+                VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,[car.make,car.model,car.year,car.kilometres,car.transmission,car.drivetrain,car.body,car.extcolor,car.intcolor,car.description,car.price])  
 }
 
 module.exports = {

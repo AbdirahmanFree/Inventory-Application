@@ -5,53 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <% if(locals.errors && locals.errors.length > 0){ %>
+<body >
+    <%- include('partials/header.ejs') %>
+    <% if (locals.errors && locals.errors.length > 0) { %>
         <ul>
-            <% locals.errors.map((error) => { %>
-                <li><%- error %></li>
-            <% })%>
-
+            <% locals.errors.forEach((error) => { %>
+                <li><%= error %></li>
+            <% }) %>
         </ul>
-        
-    <%} %>
-    <h2>Add car</h2>
-    <form action="/new" method="post">
-        <label for="make">Make:</label>
-        <input id="make" name="make" type="text" required/>
-        <label for="model">Model:</label>
-        <input id="model" name="model" type="text" required/>
-        <label for="year">Year:</label>
-        <input id="year" name="year" type="number" required/>
-        <label for="kilometres">Kilometres:</label>
-        <input id="kilometres" name="kilometres" type="number" required/>
+    <% } %>
+    <div>
 
-        <label for="drivetrain">Drive Train:</label>
-        <select name="drivetrain" id="drivetrain" required>
-            <option value="AWD">AWD</option>
-            <option value="RWD">RWD</option>
-            <option value="FWD">FWD</option>
-            <option value="AWD">4WD</option>
-        </select>
-
-        <label for="transmission">Transmission:</label>
-        <select name="transmission" id="transmission" required >
-            <option value="Automatic">Automatic</option>
-            <option value="Manual">Manual</option>
-        </select>
-        
-        <label for="body">Body:</label>
-        <input id="body" name="body" type="text" required/>
-        <label for="extcolor">Exterior Color:</label>
-        <input id="extcolor" name="extcolor" type="text"/>
-        <label for="intcolor">Interior Color:</label>
-        <input id="intcolor" name="intcolor" type="text"/>
-        <label for="description">description:</label>
-        <input id="description" name="description" type="text"/>
-        <label for="price">Price:</label>
-        <input id="price" name="price" type="number" required/>
-        
-        <button type="Submit">Submit</button>
-    </form>
+    </div>
+    <div class="form-container">
+        <h2>Add car</h2>
+        <form action="/new" method="post" class="add-car-form">
+            <div class="field">
+                <label for="make">Make:</label>
+                <input id="make" name="make" type="text" required/>
+            </div>
+            <div class="field">
+                <label for="model">Model:</label>
+                <input id="model" name="model" type="text" required/>
+            </div>
+            <div class="field">
+                <label for="year">Year:</label>
+                <input id="year" name="year" type="number" required/>
+            </div>
+            <div class="field">
+                <label for="kilometres">Kilometres:</label>
+                <input id="kilometres" name="kilometres" type="number" required/>
+            </div>
+            <div class="field">
+                <label for="drivetrain">Drive Train:</label>
+                <select name="drivetrain" id="drivetrain" required>
+                    <option value="AWD">AWD</option>
+                    <option value="RWD">RWD</option>
+                    <option value="FWD">FWD</option>
+                    <option value="AWD">4WD</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="transmission">Transmission:</label>
+                <select name="transmission" id="transmission" required >
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="body">Body:</label>
+                <input id="body" name="body" type="text" required/>
+            </div>
+            <div class="field">
+                <label for="extcolor">Exterior Color:</label>
+                <input id="extcolor" name="extcolor" type="text"/>
+            </div>
+            <div class="field">
+                <label for="intcolor">Interior Color:</label>
+                <input id="intcolor" name="intcolor" type="text"/>
+            </div>
+            <div class="field">
+                <label for="description">description:</label>
+                <input id="description" name="description" type="text"/>
+            </div>
+            <div class="field">
+                <label for="price">Price:</label>
+                <input id="price" name="price" type="number" required/>
+            </div>
+            
+            <div class="field">
+                <button type="Submit">Submit</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

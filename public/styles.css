@@ -22,3 +22,36 @@ a {
     text-decoration: none;
     color: black;
 }
+.add-car-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: max-content;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 32px;
+    gap: 16px;
+    border-radius: 8px;
+
+}
+
+.field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+button {
+    background-color: white;
+    border: 1px solid;
+    padding: 4px 8px;
+    border-radius: 999px;
+}

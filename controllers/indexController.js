@@ -7,8 +7,8 @@ const validateCar = [
     body('model').trim().matches(/^[a-zA-Z0-9\s]+$/),
     body('year').isInt({min: 1900, max: 2027}).toInt().withMessage('not a valid year'),
     body('kilometres').isInt({min: 0, max:400000}).toInt().withMessage('not a valid value'),
-    body('drivetrain'),
     body('transmission'),
+    body('drivetrain'),
     body('body').trim().toLowerCase().isIn(['sedan','suv,','coupe', 'convertible', 'minivan','motercycle', 'hatchback', 'wagon','pickup','van']).withMessage(bodyErr),
     body('extcolor').trim().toLowerCase().isIn(['red','blue','yellow','green','white','black','grey','purple','pink','orange','brown']).withMessage(colorErr),
     body('intcolor').trim().toLowerCase().isIn(['red','blue','yellow','green','white','black','grey','purple','pink','orange','brown']).withMessage(colorErr),
@@ -37,9 +37,18 @@ exports.addCarPost = [
             })
         }
         else{
-            console.log('this the matched data',matchedData(req))
-            console.log('this the req body',req.body)
-            res.redirect("/");
+            try{
+                 db.insertCar(matchedData(req)).then(response=> {
+                    res.redirect("/");
+                })
+                console.log("success")
+            }
+            catch(error){
+                res.render("addCar", {
+                    errors: [error]
+                })
+            }
+           
         }
         
 
