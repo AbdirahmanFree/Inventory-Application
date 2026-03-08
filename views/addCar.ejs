@@ -7,17 +7,16 @@
 </head>
 <body >
     <%- include('partials/header.ejs') %>
-    <% if (locals.errors && locals.errors.length > 0) { %>
-        <ul>
-            <% locals.errors.forEach((error) => { %>
-                <li><%= error %></li>
-            <% }) %>
-        </ul>
-    <% } %>
-    <div>
-
-    </div>
+    
+   
     <div class="form-container">
+        <% if (locals.errors && locals.errors.length > 0) { %>
+            <ul>
+                <% locals.errors.forEach((error) => { %>
+                    <li><%= error.path %>: <%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
         <h2>Add car</h2>
         <form action="/new" method="post" class="add-car-form">
             <div class="field">
@@ -71,6 +70,10 @@
             <div class="field">
                 <label for="price">Price:</label>
                 <input id="price" name="price" type="number" required/>
+            </div>
+            <div class="field">
+                <label for="img">Image Adress:</label>
+                <input id="img" name="img" type="text"/>
             </div>
             
             <div class="field">

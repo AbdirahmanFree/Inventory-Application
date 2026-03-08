@@ -13,7 +13,8 @@ const validateCar = [
     body('extcolor').trim().toLowerCase().isIn(['red','blue','yellow','green','white','black','grey','purple','pink','orange','brown']).withMessage(colorErr),
     body('intcolor').trim().toLowerCase().isIn(['red','blue','yellow','green','white','black','grey','purple','pink','orange','brown']).withMessage(colorErr),
     body('description'),
-    body('price').isInt({min: 1000}).withMessage('Price is too low').toInt()
+    body('price').isInt({min: 1000}).withMessage('Price is too low').toInt(),
+    body('img')
     
 ]
 
@@ -32,8 +33,9 @@ exports.addCarPost = [
     (req,res) => {
         const errors = validationResult(req)
         if(!errors.isEmpty()){
+            console.log(errors.errors)
             res.render("addCar", {
-                errors: errors
+                errors: errors.errors
             })
         }
         else{
@@ -44,9 +46,7 @@ exports.addCarPost = [
                 console.log("success")
             }
             catch(error){
-                res.render("addCar", {
-                    errors: [error]
-                })
+                console.log(error)
             }
            
         }
