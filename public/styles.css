@@ -55,3 +55,34 @@ button {
     padding: 4px 8px;
     border-radius: 999px;
 }
+
+.card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: 24px 32px;
+}
+.card {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+
+}
+
+.details {
+    font-weight: bold;
+}
+
+

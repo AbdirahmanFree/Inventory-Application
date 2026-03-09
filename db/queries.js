@@ -1,9 +1,15 @@
 const pool = require("./pool")
 
 async function listAllCars(){
-    const {rows} = await pool.query(`SELECT * FROM car`)
-    console.log(rows)
-    return rows
+    try{
+        const {rows} = await pool.query(`SELECT * FROM car`)
+         return rows
+    }
+    catch(error){
+        console.log(error)
+        return null
+    }
+   
 }
 
 async function insertCar(car) {

@@ -20,7 +20,9 @@ const validateCar = [
 
 exports.listCarsGet = (req,res) => {
     db.listAllCars().then(response => {
-        res.render("home")
+        res.render("home", {
+            cars: response
+        })
     })
 }
 

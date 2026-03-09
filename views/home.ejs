@@ -9,7 +9,17 @@
 <body>
     <%- include("partials/header") %>
     <button onclick="window.location.href='/new'">New Car +</button>
-    <div class="content">
+    <div class="card-container">
+        <% if(locals.cars && locals.cars.length >0){ %>
+            <% locals.cars.map((car) => { %>
+                <div class="card">
+                    <img class="img" src= "<%= car.img %>" >
+                    <span class="details"><%= car.year%> <%= car.make%> <%= car.model%> - $<%= car.price %></span>
+                </div>
+            <% }) %>
+        <%} else { %>
+            <h1>No cars found</h1>
+        <% } %>
 
     </div>
 </body>
