@@ -8,7 +8,41 @@
 </head>
 <body>
     <%- include("partials/header") %>
-    <button onclick="window.location.href='/new'">New Car +</button>
+    <div class="buttons">
+        <button onclick="window.location.href='/new'">New Car +</button>
+    </div>
+    <div class="filter">
+        <% if(locals.cars && locals.cars.length > 0) { %>
+            <form class="filter" action="/filter" method="post">
+                <% const uniqueMakes = [...new Set(cars.map(car => car.make))];%>
+                <select name="make" id="make">
+                    <% if(locals.filter){ %>
+                        <option value="<%= filter.make %>"> <%= filter.make %> </option>
+                    <% } else { %>
+                        <option value="All">All</option>
+                        <% uniqueMakes.forEach((make) => { %>
+                            <option value="<%= make %>"><%= make %></option>
+                        <%}) %>
+                    <% } %>
+                </select>
+                <div class="filter-field">
+                    <input class="filter-input" name="minYear" id="minYear" placeholder="<%= locals.filter ? filter.minYear : 'Min year' %>" type="number" />
+                    <input class="filter-input" name="maxYear" id="maxYear" placeholder="<%= locals.filter ? filter.maxYear : 'Max year' %>" type="number"/>
+                </div>
+                <div class="filter-field">
+                    <input class="filter-input" name="minPrice" id="minPrice" placeholder="<%= locals.filter ? filter.minPrice : 'Min price' %>" type="number" />
+                    <input class="filter-input" name="maxPrice" id="maxPrice" placeholder="<%= locals.filter ? filter.maxPrice : 'Max price' %>" type="number"/>
+                </div>
+                <% if(locals.filter){ %>
+                    <button type="button" onclick="window.location.href ='/'" >Remove Filter</button>
+                <%} else{ %>
+                    <button type="submit">Filter</button>
+                <%} %>
+            </form>
+
+        <% } %>
+        
+    </div>
     <div class="card-container">
         <% if(locals.cars && locals.cars.length >0){ %>
             <% locals.cars.map((car) => { %>

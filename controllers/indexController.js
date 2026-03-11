@@ -18,6 +18,29 @@ const validateCar = [
     
 ]
 
+const validateFilter = [
+    body('make').trim(),
+    body('minYear').isInt({min: 1900, max: 2027}).toInt().withMessage('not a valid year'),
+    body('maxYear').isInt({min: 1900, max: 2027}).toInt().withMessage('not a valid year').custom((value, { req } )=> {
+        if(req.body.minYear > req.body.maxYear){
+            throw new Error('Min year should be less than max year')
+        }
+        return true
+    }),
+    body('minPrice').isInt({min: 0}).toInt().withMessage("Not a valid price"),
+    body('maxPrice').isInt({min: 0}).toInt().withMessage("Not a valid price").custom((value, { req } )=> {
+        if(req.body.minPrice > req.body.maxPrice){
+            throw new Error('Min price should be less than max price')
+        }
+        return true
+    })
+    
+    
+
+
+
+]
+
 exports.listCarsGet = (req,res) => {
     db.listAllCars().then(response => {
         res.render("home", {
@@ -54,5 +77,24 @@ exports.addCarPost = [
         }
         
 
+    }
+]
+
+exports.filterCarPost = [
+    validateFilter,
+    (req,res) => {
+        const error = validationResult(req)
+        if(!error.isEmpty()){
+            console.log(error)
+            res.redirect("/")
+        }
+        else {
+            db.filterCars(matchedData(req)).then(response=> {
+                res.render("home", {
+                    cars: response,
+                    filter: matchedData(req)
+                })
+            })
+        }
     }
 ]

@@ -40,6 +40,7 @@ a {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    gap: 8px;
 }
 
 .form-container {
@@ -49,11 +50,12 @@ a {
     
 }
 
-button {
+button select {
     background-color: white;
     border: 1px solid;
     padding: 4px 8px;
-    border-radius: 999px;
+    border-radius: 8px;
+    width: 100%;
 }
 
 .card-container {
@@ -84,5 +86,51 @@ button {
 .details {
     font-weight: bold;
 }
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 24px 32px;
+}
+
+input {
+    border-radius: 999px;
+    border: 1px solid;
+    padding: 4px 8px;
+    background-color: inherit;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    margin: 16px ;
+    gap: 8px;
+}
+
+.filter-input,select {
+    width: 50%;
+    background-color: inherit;
+    height: max-content;
+    padding: 4px 8px;
+    border-radius: 0px;
+}
+
+label {
+    min-width: max-content;
+}
+
+.filter-input {
+    width: 50%;
+    border: 1px solid;
+}
+
+.filter-field {
+    display: flex;
+    max-width: max-content;
+    gap: 4px;
+}
+
+
 
 
