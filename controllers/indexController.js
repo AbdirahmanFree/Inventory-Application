@@ -3,13 +3,13 @@ const { body, validationResult, matchedData } = require("express-validator")
 const colorErr = 'not a valid color'
 const bodyErr = 'not a valid body type'
 const validateCar = [
-    body('make').trim().matches(/^[a-zA-Z0-9\s]+$/),
-    body('model').trim().matches(/^[a-zA-Z0-9\s]+$/),
+    body('make').trim().matches(/^[a-zA-Z0-9\s-]+$/),
+    body('model').trim().matches(/^[a-zA-Z0-9\s-]+$/),
     body('year').isInt({min: 1900, max: 2027}).toInt().withMessage('not a valid year'),
     body('kilometres').isInt({min: 0, max:400000}).toInt().withMessage('not a valid value'),
     body('transmission'),
     body('drivetrain'),
-    body('body').trim().toLowerCase().isIn(['sedan','suv,','coupe', 'convertible', 'minivan','motercycle', 'hatchback', 'wagon','pickup','van']).withMessage(bodyErr),
+    body('body').trim().toLowerCase().isIn(['sedan','suv','coupe', 'convertible', 'minivan','motercycle', 'hatchback', 'wagon','pickup','van']).withMessage(bodyErr),
     body('extcolor').trim().toLowerCase().isIn(['red','blue','yellow','green','white','black','grey','purple','pink','orange','brown']).withMessage(colorErr),
     body('intcolor').trim().toLowerCase().isIn(['red','blue','yellow','green','white','black','grey','purple','pink','orange','brown']).withMessage(colorErr),
     body('description'),
@@ -98,3 +98,12 @@ exports.filterCarPost = [
         }
     }
 ]
+
+
+exports.viewCarGet = (req,res) => {
+    db.getCarByID(req.params.id).then((response)=> {
+        res.render("car", {
+            car: response[0]
+        })
+    })
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="imageAndText">
+            <h1> <%=car.make %> <%=car.make %> <%=car.model %></h1>
+            <img src="<%=car.img %>" class="car-img" />
+        </div>
+        <div class="description">
+            <h2> $<%=car.price %></h2>
+            <p>
+                <%=car.description %>
+            </p>
+            <% const features = [car.kilometres + " Km",car.transmission,car.drivetrain,car.body,car.extcolor,car.intcolor] %>
+            <ul>
+                <% features.forEach((feature) => {%>
+                    <li> <%= feature %> </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
