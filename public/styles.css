@@ -80,7 +80,7 @@ button select {
 
 .card img {
     width: 100%;
-    height: auto;
+    height: 85%;
     border-radius: 8px;
 
 }
@@ -140,9 +140,18 @@ label {
 }
 
 
-
+.delete-btn {
+    position: relative;
+    top: 20px;
+    right: 10px;
+}
 
 .car-img {
     width: 400px;
     height: auto;
+}
+
+.no-style {
+    background-color: inherit;
+    border: 0px;
 }

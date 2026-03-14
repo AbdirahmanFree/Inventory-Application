@@ -48,9 +48,20 @@ async function getCarByID(id){
     }
 }
 
+async function deleteCarByID(id){
+    try{
+        await pool.query(`DELETE FROM car
+                         WHERE id = $1; `, [id])
+    }
+    catch(error) {
+        console.log('something went wrong deleting', error)
+    }
+}
+
 module.exports = {
     listAllCars,
     insertCar,
     filterCars,
-    getCarByID
+    getCarByID,
+    deleteCarByID
 }

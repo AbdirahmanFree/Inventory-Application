@@ -107,3 +107,11 @@ exports.viewCarGet = (req,res) => {
         })
     })
 }
+
+exports.deleteCarPost = (req,res) => {
+    console.log(req.params.id)
+    db.deleteCarByID(req.params.id).then(response => {
+        res.redirect("/")
+    })
+    
+}

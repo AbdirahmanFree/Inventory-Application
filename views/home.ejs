@@ -46,12 +46,19 @@
     <div class="card-container">
         <% if(locals.cars && locals.cars.length >0){ %>
             <% locals.cars.map((car) => { %>
-                <a href="/car/<%= car.id %>">
-                    <div class="card">
-                        <img class="img" src= "<%= car.img %>" >
-                        <span class="details"><%= car.year%> <%= car.make%> <%= car.model%> - $<%= car.price %></span>
-                    </div>
-                </a>
+                <div>
+                    <form class="delete-btn" action="/car/<%= car.id %>/delete" method="post" >
+                       <button class="no-style">
+                            <img src="/assets/x-square.svg"/>
+                       </button>
+                    </form>
+                    <a href="/car/<%= car.id %>">
+                        <div class="card">
+                            <img class="img" src= "<%= car.img %>" >
+                            <span class="details"><%= car.year%> <%= car.make%> <%= car.model%> - $<%= car.price %></span>
+                        </div>
+                    </a>
+                </div>
             <% }) %>
         <%} else { %>
             <h1>No cars found</h1>
